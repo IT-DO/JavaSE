@@ -22,7 +22,7 @@ public class HashMapEx1 {
         System.out.println("Поиск по Значению(Value): \"Sergei Petrov\": " + map1.containsValue("Sergei Petrov")); // Поиск по значению
         System.out.println("Поиск по ключу (Key): 4: " + map1.containsKey(4)); // поиск по ключу
         System.out.println("Поиск по ключу (Key): 4123: " + map1.containsKey(4123)); // пример поиска по несуществующему ключу
-        System.out.println("Ввод всех ключей которыйми мы пользуемся в коллекции map1: " + map1.keySet()); // вывод всех ключей которыйми мы пользуемся в коллекции map1
+        System.out.println("Ввод всех ключей которыми мы пользуемся в коллекции map1: " + map1.keySet()); // вывод всех ключей которыйми мы пользуемся в коллекции map1
         System.out.println("Ввод всех значений в коллекции map1: " + map1.values()); // вывод всех значений которыйми мы пользуемся в коллекции map1
 
 
