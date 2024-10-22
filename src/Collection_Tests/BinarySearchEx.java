@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class BinarySearch {
+public class BinarySearchEx {
     public static void main(String[] args) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(2);
