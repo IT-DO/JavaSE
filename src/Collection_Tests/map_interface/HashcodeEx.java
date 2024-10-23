@@ -27,7 +27,7 @@ public class HashcodeEx {
         System.out.println(isHashcodeEquals);
         //При переопределении equals() - переопредели и hashcode!!!
         //в примитивах и String equals и hashcode уже имеют хорошую реализацию.
-
+        //При неравенстве по equals неравенство по hashcode не обязательно т.к. hashcode возвращает int(-2 147 ... ... до 2 147 ... ...)
 
     }
 }
