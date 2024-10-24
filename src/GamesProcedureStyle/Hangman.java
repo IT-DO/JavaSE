@@ -20,21 +20,21 @@ import java.util.regex.Pattern;
 
 public class Hangman {
 
-    private static final Path path = Paths.get("res/dict.txt");                                                     // путь к словарю в папке "res"
+    private static final Path path = Paths.get("res/dict.txt");                                                     // путь к словарю в папке "res" СЛОВА от 4 до 8 символов - русские существительные в именительном падеже (единственное число, мужской и женский род)
 
     private static final Scanner USER_SCANNER = new Scanner(System.in);                                                  // создание объекта Сканер для ввода пользователя
 
     private static final Random RANDOM = new Random();                                                                   // создание объекта Random для выбора случайного слова из словаря
 
-    private static String MAIN_MENU_QUESTION = "\n\nХотите сыграть в игру \"Виселица\"?\nДля начала игры введите: 1 + Enter\nДля отмены введите: 0 + Enter";
+    private static final String MAIN_MENU_QUESTION = "Хотите сыграть в игру \"Виселица\"?\nДля начала игры введите: 1 + Enter\nДля отмены введите: 0 + Enter";
 
-    private static String GREETING_AND_RULES = "Приветствую Вас в игре Виселица. Вы должны угадать слово, вводя по одной букве за шаг\nЭто слово - имя существительное, нарицательное, в именительном падеже. Допускается 6 ошибок.";
+    private static final String GREETING_AND_RULES = "Приветствую Вас в игре Виселица. Вы должны угадать слово, вводя по одной букве за шаг\nЭто слово - имя существительное длинной от 4 до 8 букв, нарицательное, в именительном падеже мужского или женского рода. Допускается 6 ошибок.";
 
-    private static String GAME_STATE_WIN = "Вы выиграли! Поздравляем!";
+    private static final String GAME_STATE_WIN = "Вы выиграли! Поздравляем!";
 
-    private static String GAME_STATE_LOSE = "Вы проиграли! Допущено слишком много ошибок.";
+    private static final String GAME_STATE_LOSE = "Вы проиграли! Допущено слишком много ошибок.";
 
-    private static String GAME_STATE_NOT_FINISHED = "Игра не окончена";
+    private static final String GAME_STATE_NOT_FINISHED = "Игра не окончена";
 
     private static int mistakes = 6;
 
@@ -49,6 +49,7 @@ public class Hangman {
     }                                                                        //старт программы
 
     static void menu() {
+        printHangman(mistakes);
         System.out.println(MAIN_MENU_QUESTION);
         char input = getUserInput();
         if (input == '1') {
@@ -59,6 +60,9 @@ public class Hangman {
             System.out.println("Вы закрыли игру, мы будем скучать =(");
             USER_SCANNER.close();
             System.exit(1);
+        } else {
+            System.out.println("Вы ввели что-то не то, попробуйте еще раз...");
+            menu();
         }
     }                                                                                            //игровое меню
 
@@ -67,7 +71,7 @@ public class Hangman {
         secretWord = getRandomSecretWord(dict);                                                                         //получаем рандомное слово из словаря
         maskWord = secretWord.replaceAll("\\S", "*");                                                   //маскируем полученное слово "*" звездочками
         userLetterSet = new HashSet<>();                                                                                //создаем коллекцию введенных пользователем символов
-        System.out.println(maskWord);                                                                                   //показываем слово пользователю
+        System.out.println(maskWord.toUpperCase());                                                                                   //показываем слово пользователю
     }                                                                                  //запускаем текущий раунд
 
     static ArrayList<String> createDictionary() {
@@ -93,27 +97,38 @@ public class Hangman {
         ArrayList<String> secretWord = new ArrayList<>();
         String randomWord = list.get(RANDOM.nextInt(list.size()));
         return randomWord;
-    }                                                          //получаем random слово из словаря
+    }
 
     static void startGameLoop() {
         do {
+            System.out.println("Введите букву и нажмите Enter");
             char userInput = getUserInput();
             userLetterSet.add(userInput);
 
             if (secretWord.contains(String.valueOf(userInput))) {
+                System.out.println("\nЕсть такая буква!");
                 maskWord = openLetterInMask(userInput);
             } else {
+                System.out.println("Мимо! Попробуйте еще...");
                 mistakes--;
             }
 
             printHangman(mistakes);
             printCurrentTurnInfo(mistakes);
 
+            if (mistakes == 0) {
+                mistakes = 6;
+                System.out.println("Хотите сыграть еще раз? \nДля начала игры введите: 1 + Enter\nДля отмены введите: 0 + Enter\"");
+                menu();
+            }
+
             String gameState = checkGameState(mistakes);
             if (!Objects.equals(gameState, GAME_STATE_NOT_FINISHED)) {
                 System.out.println(gameState);
                 return;
             }
+
+
         } while (true);
 
     }                                                                                   //начало игрового цикла
@@ -121,7 +136,7 @@ public class Hangman {
     public static boolean isRussianLetterOrDigit(char userInput) {
         String regex = "[а-яА-ЯёЁ0-1]";
         return Pattern.matches(regex, String.valueOf(userInput));
-    }                                                  //проверка языка ввода и цифр (0-1) с помощью regEx
+    }                                                  //валидация ввода
 
     static char getUserInput() {
         char c = USER_SCANNER.next().charAt(0);
@@ -144,14 +159,14 @@ public class Hangman {
     }                                                        //открываем отгаданную букву в замаскированном слове
 
     private static void printCurrentTurnInfo(int mistakes) {
-        System.out.println("Загаданное слово: " + maskWord + "\nКоличество оставшихся ошибок: " + mistakes + "\nБуквы, которые вы уже ввели: " + userLetterSet + "\n");
+        System.out.println("Загаданное слово: " + maskWord.toUpperCase() + "\nКоличество оставшихся попыток: " + mistakes + "\nБуквы, которые вы уже ввели: " + userLetterSet.toString().toUpperCase() + "\n");
     }                                                        //вывод информации о текущем ХОДЕ
 
     private static String checkGameState(int mistakes) {
         if (mistakes == 0) {
             return GAME_STATE_LOSE + "\n" + "Загаданное слово: " + secretWord.toUpperCase();
         } else if (secretWord.equals(maskWord)) {
-            return GAME_STATE_WIN + "Хотите сыграть еще раз?!";
+            return GAME_STATE_WIN;
         } else {
             return GAME_STATE_NOT_FINISHED;
         }
@@ -165,14 +180,13 @@ public class Hangman {
         if (mistakes < 3) hangman[1] = "/□";
         if (mistakes < 2) hangman[1] = "/□\\";
         if (mistakes < 1) hangman[2] = "/";
-        if (mistakes <= 0) hangman[2] = "/ \\";
+        if (mistakes <= 0) hangman[2] = "/ \\" + "\n        GAME_OVER";
 
         String top = "_____________\n" + "|           |\n";
         String head = "|           " + hangman[0] + "\n";
         String body = "|          " + hangman[1] + "\n";
         String legs = "|          " + hangman[2] + "\n";
         String bottom = "|\n" + "‾‾‾‾‾‾‾‾‾‾‾‾‾\n";
-
         System.out.print("\n" + top + head + body + legs + bottom);
     }                                                                        //вывод виселицы
 
