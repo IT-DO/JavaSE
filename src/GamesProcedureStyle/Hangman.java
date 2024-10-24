@@ -1,6 +1,5 @@
 package GamesProcedureStyle;
 //Игра в процедурном стиле. Свои классы не создаем.
-
 //Начало игры (Интерактивное, согласно ТЗ)
 //Считываем словарь из файла
 //Загадываем случайное слово
@@ -9,69 +8,76 @@ package GamesProcedureStyle;
 //Проверяем наличие введенного символа в загаданном слове
 //если не угадлал, счетчик ошибок(0-6) ++ и выводим виселицу(CASE 1-6), запрашиваем ввод еще раз
 //если угадал, обновляем маску слова, выводим слово на экран, запрашиваем ввод еще раз
-//Проверяем количество ошибок. Если кол-во ошибок < 6
-// и все символы открыты - игрок выйграл, если количество ошибок 6 игрок проиграл
-// Выводим сообщение на экран
+//Проверяем количество ошибок. Если кол-во ошибок > 0
+// и все символы открыты - игрок выйграл, если количество оставшихся ошибок 0  - игрок проиграл
+// Выводим сообщение на экран и виселицу The End
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.regex.*;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class Hangman {
 
+    private static final Path path = Paths.get("res/dict.txt");                                                     // путь к словарю в папке "res"
 
-        private static final Path path = Paths.get("res/dict.txt");             // путь к словарю в папке "res"
+    private static final Scanner USER_SCANNER = new Scanner(System.in);                                                  // создание объекта Сканер для ввода пользователя
 
-        private static final Scanner DICT_SCANNER;                                   // создание объекта Сканер2 для парсинга словаря
+    private static final Random RANDOM = new Random();                                                                   // создание объекта Random для выбора случайного слова из словаря
 
-        static {
-            try {
-                DICT_SCANNER = new Scanner(path);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private static String MAIN_MENU_QUESTION = "\n\nХотите сыграть в игру \"Виселица\"?\nДля начала игры введите: 1 + Enter\nДля отмены введите: 0 + Enter";
 
-        private static final Scanner USER_SCANNER = new Scanner(System.in);            // создание объекта Сканер для ввода пользователя
+    private static String GREETING_AND_RULES = "Приветствую Вас в игре Виселица. Вы должны угадать слово, вводя по одной букве за шаг\nЭто слово - имя существительное, нарицательное, в именительном падеже. Допускается 6 ошибок.";
 
-        private static final Random RANDOM = new Random();                             // создание объекта Random
+    private static String GAME_STATE_WIN = "Вы выиграли! Поздравляем!";
 
-        private static String GAME_STATE_WIN = "Вы выиграли! Поздравляем!";
+    private static String GAME_STATE_LOSE = "Вы проиграли! Допущено слишком много ошибок.";
 
-        private static String GAME_STATE_LOSE = "Вы проиграли! Допущено слишком много ошибок.";
+    private static String GAME_STATE_NOT_FINISHED = "Игра не окончена";
 
-        private  static int mistakes = 0;
+    private static int mistakes = 6;
+
+    private static String secretWord;
+
+    private static String maskWord;
+
+    private static Set<Character> userLetterSet;
 
     public static void main(String[] args) {
-        startGameRound();
-    }
+        menu();
+    }                                                                        //старт программы
 
-    static void startGameRound() {
+    static void menu() {
+        System.out.println(MAIN_MENU_QUESTION);
+        char input = getUserInput();
+        if (input == '1') {
+            System.out.println(GREETING_AND_RULES);
+            roundInitialize();
+            startGameLoop();
+        } else if (input == '0') {
+            System.out.println("Вы закрыли игру, мы будем скучать =(");
+            USER_SCANNER.close();
+            System.exit(1);
+        }
+    }                                                                                            //игровое меню
 
-        List<String> dict = getDictFromFile();
-        String secretWord = getRandomSecretWord(dict);
-//        char [] chararray = secretWord.toCharArray();
-//        System.out.println(chararray);\
+    static void roundInitialize() {
+        List<String> dict = createDictionary();                                                                         //создаем словарь из файла в папке res/dict.txt
+        secretWord = getRandomSecretWord(dict);                                                                         //получаем рандомное слово из словаря
+        maskWord = secretWord.replaceAll("\\S", "*");                                                   //маскируем полученное слово "*" звездочками
+        userLetterSet = new HashSet<>();                                                                                //создаем коллекцию введенных пользователем символов
+        System.out.println(maskWord);                                                                                   //показываем слово пользователю
+    }                                                                                  //запускаем текущий раунд
 
-        String newWord = secretWord.replaceAll("\\S", "*");
-        System.out.println("Приветствую Вас в игре Виселица. Вы должны угадать слово, вводя по одной букве за шаг.");
-        System.out.println("Это имя существительное, нарицательное, в именительном падеже. Разрешается 7 неправильных попыток.");
-        System.out.println("После пятой неправильной попытки выдается подсказка из словаря.");
-        System.out.println(secretWord);
-        System.out.println(newWord);
-
-        String userletter = getUserLetter();
-
-
-    }
-
-    static ArrayList<String> getDictFromFile() {
+    static ArrayList<String> createDictionary() {
         ArrayList<String> array = new ArrayList<>();
+        Scanner DICT_SCANNER = null;
+        try {
+            DICT_SCANNER = new Scanner(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             while (DICT_SCANNER.hasNext()) {
                 String line = DICT_SCANNER.nextLine();
@@ -81,33 +87,85 @@ public class Hangman {
             e.printStackTrace();
         }
         return array;
-    } //создаем словарь из файла и отдаем список
+    }                                                                   //создаем словарь из файла и отдаем список слов
 
-    static String getRandomSecretWord(List<String> list) {  // берем рандомное слово из списка ArrayList<String> list
+    static String getRandomSecretWord(List<String> list) {
         ArrayList<String> secretWord = new ArrayList<>();
         String randomWord = list.get(RANDOM.nextInt(list.size()));
         return randomWord;
-    } // получаем random слово из словаря и отдаем массив char
+    }                                                          //получаем random слово из словаря
 
-    static String getUserLetter() {
-        System.out.println("Введите букву с клавиатуры: ");
-        String c = USER_SCANNER.next();
-        return c;
-    }
+    static void startGameLoop() {
+        do {
+            char userInput = getUserInput();
+            userLetterSet.add(userInput);
+
+            if (secretWord.contains(String.valueOf(userInput))) {
+                maskWord = openLetterInMask(userInput);
+            } else {
+                mistakes--;
+            }
+
+            printHangman(mistakes);
+            printCurrentTurnInfo(mistakes);
+
+            String gameState = checkGameState(mistakes);
+            if (!Objects.equals(gameState, GAME_STATE_NOT_FINISHED)) {
+                System.out.println(gameState);
+                return;
+            }
+        } while (true);
+
+    }                                                                                   //начало игрового цикла
+
+    public static boolean isRussianLetterOrDigit(char userInput) {
+        String regex = "[а-яА-ЯёЁ0-1]";
+        return Pattern.matches(regex, String.valueOf(userInput));
+    }                                                  //проверка языка ввода и цифр (0-1) с помощью regEx
+
+    static char getUserInput() {
+        char c = USER_SCANNER.next().charAt(0);
+        if (isRussianLetterOrDigit(c)) {
+            return c;
+        } else {
+            System.out.println("Проверьте язык ввода, у нас только русские слова! ;)");
+            return getUserInput();
+        }
+    }                                                                                    //получаем ввод от пользователя
+
+    private static String openLetterInMask(char userInput) {
+        char[] maskArray = maskWord.toCharArray();
+        for (int i = 0; i < secretWord.length(); i++) {
+            if (secretWord.charAt(i) == userInput) {
+                maskArray[i] = userInput;
+            }
+        }
+        return String.valueOf(maskArray);
+    }                                                        //открываем отгаданную букву в замаскированном слове
+
+    private static void printCurrentTurnInfo(int mistakes) {
+        System.out.println("Загаданное слово: " + maskWord + "\nКоличество оставшихся ошибок: " + mistakes + "\nБуквы, которые вы уже ввели: " + userLetterSet + "\n");
+    }                                                        //вывод информации о текущем ХОДЕ
+
+    private static String checkGameState(int mistakes) {
+        if (mistakes == 0) {
+            return GAME_STATE_LOSE + "\n" + "Загаданное слово: " + secretWord.toUpperCase();
+        } else if (secretWord.equals(maskWord)) {
+            return GAME_STATE_WIN + "Хотите сыграть еще раз?!";
+        } else {
+            return GAME_STATE_NOT_FINISHED;
+        }
+    }                                                            //проверяем статус игры
 
     static void printHangman(int mistakes) {
-        String[] hangman = {
-                "",
-                "",
-                ""
-        };
+        String[] hangman = {"", "", ""};
 
-        if (mistakes > 0) hangman[0] = "O";
-        if (mistakes > 1) hangman[1] = " □";
-        if (mistakes > 2) hangman[1] = "/□";
-        if (mistakes > 3) hangman[1] = "/□\\";
-        if (mistakes > 4) hangman[2] = "/";
-        if (mistakes > 5) hangman[2] = "/ \\";
+        if (mistakes < 5) hangman[0] = "O";
+        if (mistakes < 4) hangman[1] = " □";
+        if (mistakes < 3) hangman[1] = "/□";
+        if (mistakes < 2) hangman[1] = "/□\\";
+        if (mistakes < 1) hangman[2] = "/";
+        if (mistakes <= 0) hangman[2] = "/ \\";
 
         String top = "_____________\n" + "|           |\n";
         String head = "|           " + hangman[0] + "\n";
@@ -116,6 +174,6 @@ public class Hangman {
         String bottom = "|\n" + "‾‾‾‾‾‾‾‾‾‾‾‾‾\n";
 
         System.out.print("\n" + top + head + body + legs + bottom);
-    }                           //вывод виселицы
+    }                                                                        //вывод виселицы
 
 }
