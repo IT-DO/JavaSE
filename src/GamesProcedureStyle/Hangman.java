@@ -118,9 +118,11 @@ public class Hangman {
 
 
             String gameState = checkGameState(mistakes);
+
             if (!Objects.equals(gameState, GAME_STATE_NOT_FINISHED)) {
                 System.out.println(gameState);
-                return;
+                mistakes = 6;
+                menu();
             }
         } while (true);
 
