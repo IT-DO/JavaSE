@@ -116,12 +116,19 @@ public class Hangman {
             printHangman(mistakes);
             printCurrentTurnInfo(mistakes);
 
+            if (mistakes == 0) {
+                mistakes = 6;
+                System.out.println("Хотите сыграть еще раз? \nДля начала игры введите: 1 + Enter\nДля отмены введите: 0 + Enter\"");
+                menu();
+            }
 
             String gameState = checkGameState(mistakes);
             if (!Objects.equals(gameState, GAME_STATE_NOT_FINISHED)) {
                 System.out.println(gameState);
                 return;
             }
+
+
         } while (true);
 
     }                                                                                   //начало игрового цикла
