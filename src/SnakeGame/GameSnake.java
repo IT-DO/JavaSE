@@ -1,4 +1,4 @@
-package GamesProcedureStyle;
+package SnakeGame;
 
 import java.awt.*;
 import java.awt.event.*;
