@@ -1,4 +1,4 @@
-package Java_Core.IO_Tests;
+package Java_Core.InputOutputTests;
 
 
 import java.io.*;
