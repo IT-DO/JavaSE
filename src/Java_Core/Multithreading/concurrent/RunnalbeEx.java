@@ -1,10 +1,10 @@
-package Java_Core.Multithreading;
+package Java_Core.Multithreading.concurrent;
 
 //boost up your PERFORMANCE!
-public class ThreadsRunnableEx1 implements Runnable {
+public class RunnalbeEx implements Runnable {
     String localname;
 
-    public ThreadsRunnableEx1(String localname) {
+    public RunnalbeEx(String localname) {
         this.localname = localname;
     }
 
@@ -19,12 +19,12 @@ public class ThreadsRunnableEx1 implements Runnable {
     }
 
     public static void main(String[] args) {
-        Thread thread1 = new Thread(new ThreadsRunnableEx1("1"));
-        Thread thread2 = new Thread(new ThreadsRunnableEx1("2"));
-        Thread thread3 = new Thread(new ThreadsRunnableEx1("3"));
-        Thread thread4 = new Thread(new ThreadsRunnableEx1("4"));
-        Thread thread5 = new Thread(new ThreadsRunnableEx1("5"));
-        Thread thread6 = new Thread(new ThreadsRunnableEx1("6"));
+        Thread thread1 = new Thread(new RunnalbeEx("1"));
+        Thread thread2 = new Thread(new RunnalbeEx("2"));
+        Thread thread3 = new Thread(new RunnalbeEx("3"));
+        Thread thread4 = new Thread(new RunnalbeEx("4"));
+        Thread thread5 = new Thread(new RunnalbeEx("5"));
+        Thread thread6 = new Thread(new RunnalbeEx("6"));
 
         thread1.setPriority(Thread.MAX_PRIORITY);
         thread2.setPriority(Thread.MIN_PRIORITY);

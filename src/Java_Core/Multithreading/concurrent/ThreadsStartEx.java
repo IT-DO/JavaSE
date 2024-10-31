@@ -1,13 +1,13 @@
-package Java_Core.Multithreading;
+package Java_Core.Multithreading.concurrent;
 
-public class MyOneHudredThread implements Runnable {
+public class ThreadsStartEx implements Runnable {
     private int counter;
     static int globalcounter;
 
     public static void main(String[] args) {
-        new Thread(new MyOneHudredThread()).start();
-        new Thread(new MyOneHudredThread()).start();
-        new Thread(new MyOneHudredThread()).start();
+        new Thread(new ThreadsStartEx()).start();
+        new Thread(new ThreadsStartEx()).start();
+        new Thread(new ThreadsStartEx()).start();
 
 
     }
