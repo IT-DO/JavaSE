@@ -10,7 +10,7 @@ public class ThreadsRunnableEx1 implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName()+" is started");
+        System.out.println(Thread.currentThread().getName() + " is started");
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {
