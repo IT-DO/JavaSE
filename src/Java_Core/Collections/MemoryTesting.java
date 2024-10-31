@@ -6,7 +6,7 @@ public class MemoryTesting {
     public static void main(String[] args) {
         Random random = new Random();
         ArrayList<Integer> list = new ArrayList<>(100);
-        int capacity = random.nextInt(500);
+        int capacity = random.nextInt(30000);
         for (int i = 0; i <= capacity; i++) {
             list.add(random.nextInt(21));
             for (int j = 0; j < capacity; j++) {
@@ -16,10 +16,10 @@ public class MemoryTesting {
 
         Set<Integer> set = new TreeSet<>(list);
 
-        String maxMemory = ("Max. memory: " + Runtime.getRuntime().maxMemory() / 1000 + " Kb");
-        String usedMemory = ("Used memory: " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1000 + " Kb");
-        String freeMemory = ("Free memory: " + Runtime.getRuntime().freeMemory() / 1000 + " Kb");
-        String totalMemory = ("Total memory: " + Runtime.getRuntime().totalMemory() / 1000 + " Kb");
+        String maxMemory = ("Max. memory: " + Runtime.getRuntime().maxMemory() / 1_000_000 + " Kb");
+        String usedMemory = ("Used memory: " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000 + " Kb");
+        String freeMemory = ("Free memory: " + Runtime.getRuntime().freeMemory() / 1_000_000 + " Kb");
+        String totalMemory = ("Total memory: " + Runtime.getRuntime().totalMemory() / 1_000_000 + " Kb");
         System.out.println(list);
         System.out.println("\nРазмер списка " + list.size());
 
