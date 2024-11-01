@@ -1,4 +1,4 @@
-package Java_Core.Multithreading.concurrent;
+package Java_Core.Multithreading.Concurrent;
 
 public class ThreadsStartEx implements Runnable {
     private int counter;

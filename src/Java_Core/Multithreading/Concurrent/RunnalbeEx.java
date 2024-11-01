@@ -1,4 +1,4 @@
-package Java_Core.Multithreading.concurrent;
+package Java_Core.Multithreading.Concurrent;
 
 //boost up your PERFORMANCE!
 public class RunnalbeEx implements Runnable {

@@ -1,4 +1,4 @@
-package Java_Core.Multithreading.concurrent2;
+package Java_Core.Multithreading.Concurrent2;
 
 import java.util.HashSet;
 import java.util.Scanner;

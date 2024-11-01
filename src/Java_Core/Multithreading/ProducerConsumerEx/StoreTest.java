@@ -1,4 +1,4 @@
-package Java_Core.Multithreading.Producer_Consumer_Ex;
+package Java_Core.Multithreading.ProducerConsumerEx;
 
 public class StoreTest {
     public static void main(String[] args) {

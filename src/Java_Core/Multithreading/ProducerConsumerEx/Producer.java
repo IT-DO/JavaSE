@@ -1,4 +1,4 @@
-package Java_Core.Multithreading.Producer_Consumer_Ex;
+package Java_Core.Multithreading.ProducerConsumerEx;
 
 public class Producer implements Runnable{
     private Store store;
