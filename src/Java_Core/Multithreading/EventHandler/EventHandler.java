@@ -24,7 +24,7 @@ public class EventHandler implements Callable {
     @Override
     public String call() throws InterruptedException {
         long d = 0;
-        while ((d = Duration.between(eventDate, LocalDateTime.now()).toSeconds()) <= 0) {
+        while ((d = Duration.between(LocalDateTime.now(), eventDate).toSeconds()) >= 0) {
             System.out.println("Event: " + Thread.currentThread().getName() + " will be started in " + d + " seconds ");
             Thread.sleep(1000);
         }
