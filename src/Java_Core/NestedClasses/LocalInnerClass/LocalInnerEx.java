@@ -1,11 +1,17 @@
 package Java_Core.NestedClasses.LocalInnerClass;
 
 public class LocalInnerEx {
-
+    public static void main(String[] args) {
+        Math math = new Math();
+        math.getResult();
+    }
 }
 
 class Math{
+
     public void getResult(){
+        final int divided;
+        final int divisor;
         class Division{
             private int divided;
             private int divisor;
