@@ -18,6 +18,4 @@ public class CarTest {
         System.out.println(car1.getModel());
         System.out.println(car1.getHorsepower());
     }
-
-
 }
