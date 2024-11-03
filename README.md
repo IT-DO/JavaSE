@@ -1,6 +1,17 @@
+
+## Pet-проекты игровой тематики:
+
+### [SnakeGame - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/SnakeGame)
+### [Hangman - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Hangman)
+### [TicTacToe - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/TicTacToe)
+### [Chess - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Chess)
+### [Simulation - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Simulation)
+
 # Основы JavaSE
 ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](res/e2f2b5f351eab248c0091b7047b460b6.jpg)
-## Примеры реализаций классов и методов JavaSintax + JavaCore(основные категории):
+
+
+### Примеры реализаций классов и методов JavaSintax + JavaCore(основные категории):
 
 | [**Интерфейсы Comparable Класс Comparator**](https://github.com/IT-DO/JavaSE/tree/main/src/Java_Core/ComparableAndComparator) 	| [**Коллекции**](https://github.com/IT-DO/JavaSE/tree/main/src/Java_Core/Collections)                	| [**Многопоточность**](src/Java_Core/Multithreading)                                    	|        [**Работа с файлами: IO и NIO**](https://github.com/IT-DO/JavaSE/tree/main/src/Java_Core/InputOutputTests)        	| [**Nested классы**](https://github.com/IT-DO/JavaSE/tree/main/src/Java_Core/NestedClasses)    	| [**Streams**](https://github.com/IT-DO/JavaSE/tree/main/src/Java_Core/StreamAPI)                            	|
 |--------------------------------------------	|------------------------------	|--------------------------------------------------------	|:--------------------------------------------:	|----------------------	|----------------------------------------	|
@@ -28,13 +39,7 @@
 |                                            	|                              	| CopyOnWriteArrayList                                   	|                                              	|                      	|                                        	|
 |                                            	|                              	| ArrayBlockingQueue                                     	|                                              	|                      	|                                        	|
 
-# Pet-проекты игровой тематики:
 
-## [SnakeGame - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/SnakeGame)
-## [Hangman - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Hangman)
-## [TicTacToe - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/TicTacToe)
-## [Chess - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Chess)
-## [Simulation - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Simulation)
 
 
 
