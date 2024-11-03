@@ -1,15 +1,16 @@
 
-### Pet-проекты игровой тематики:
+## Pet-проекты игровой тематики:
 
-#### [SnakeGame - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/SnakeGame)
-#### [Hangman - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Hangman)
-#### [TicTacToe - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/TicTacToe)
-#### [Chess - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Chess)
-#### [Simulation - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Simulation)
+<p align="center">
+  <img src="res/petprojects.png" alt="Sublime's custom image"/>
+</p>
 
 
+| [SnakeGame - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/SnakeGame) 	|  [Hangman - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Hangman) 	|  [TicTacToe - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/TicTacToe) 	|  [Chess - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Chess) 	|  [Simulation - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Simulation) |
+|----------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------	|----------------------------------------------------------------------------------------	|----------------------------------------------------------------------------------------	|--------------------------------------------------------------------------------------------------	|
 
-# Основы JavaSE
+
+## Основы JavaSE
 <p align="center">
   <img src="res/e2f2b5f351eab248c0091b7047b460b6.jpg" alt="Sublime's custom image"/>
 </p>
