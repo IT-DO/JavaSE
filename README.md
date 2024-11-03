@@ -27,5 +27,13 @@
 |                                            	|                              	| CopyOnWriteArrayList                                   	|                                              	|                      	|                                        	|
 |                                            	|                              	| ArrayBlockingQueue                                     	|                                              	|                      	|                                        	|
 
-Также в репозитории выложены Pet проекты игровой тематики:
-## 
+# Pet-проекты игровой тематики:
+
+## SnakeGame - v1.0
+## Hangman - v1.0
+## TicTacToe - v1.0
+## Chess - SNAPSHOT 1.0
+## Simulation - SNAPSHOT 1.0
+
+
+
