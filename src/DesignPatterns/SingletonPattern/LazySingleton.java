@@ -1,4 +1,4 @@
-package Java_Core.Singleton;
+package DesignPatterns.SingletonPattern;
 //Отложенная инициализация Lazy initialization
 public final class LazySingleton {
 

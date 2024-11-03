@@ -1,4 +1,4 @@
-package Java_Core.Singleton;
+package DesignPatterns.SingletonPattern;
 //двойная проверка для быстрой многопоточной версии
 public final class DoubleCheckedLockSingleton {
 

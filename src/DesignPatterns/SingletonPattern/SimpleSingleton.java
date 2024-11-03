@@ -1,4 +1,4 @@
-package Java_Core.Singleton;
+package DesignPatterns.SingletonPattern;
 
 public final class SimpleSingleton {
 
