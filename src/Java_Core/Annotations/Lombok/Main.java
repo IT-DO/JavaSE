@@ -1,4 +1,4 @@
-package Java_Core.Lombok;
+package Java_Core.Annotations.Lombok;
 
 public class Main {
 
