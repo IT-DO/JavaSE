@@ -154,7 +154,7 @@ public class Hangman {
     //создаем словарь из файла и отдаем список слов
     static ArrayList<String> createDictionary() {
         ArrayList<String> array = new ArrayList<>();
-        Scanner DICT_SCANNER = null;
+        Scanner DICT_SCANNER;
         try {
             DICT_SCANNER = new Scanner(path);
         } catch (IOException e) {
@@ -166,16 +166,14 @@ public class Hangman {
                 array.add(line);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return array;
     }
 
     //выбираем рандомное слово из нашего словаря
     static String getRandomSecretWord(List<String> list) {
-        ArrayList<String> secretWord = new ArrayList<>();
-        String randomWord = list.get(RANDOM.nextInt(list.size()));
-        return randomWord;
+        return list.get(RANDOM.nextInt(list.size()));
     }
 
     //валидация ввода
