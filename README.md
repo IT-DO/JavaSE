@@ -6,7 +6,7 @@
 </p>
 
 
-| [SnakeGame - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/SnakeGame) 	|  [Hangman - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Hangman) 	|  [TicTacToe - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/TicTacToe) 	|  [Chess - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Chess) 	|  [Simulation - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Simulation) |
+| [SnakeGame - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/SnakeGame) 	|  [Hangman - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Hangman) 	|  [TicTacToe - v1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/TicTacToe) 	|  [Chess - SNAPSHOT 1.0](https://github.com/IT-DO/JavaSE/tree/main/src/Games/Chess) 	|  [Simulation - SNAPSHOT 1.0](https://github.com/IT-DO/Simulation_3.0) |
 |----------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------	|----------------------------------------------------------------------------------------	|----------------------------------------------------------------------------------------	|--------------------------------------------------------------------------------------------------	|
 
 
